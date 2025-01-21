@@ -75,13 +75,8 @@ Before you begin, ensure you have the following installed:
 
     Make sure your Redis server is running. If you installed it locally, you can usually start it with a command like `redis-server`.
 
-2. **Start the Django development server:**
 
-    ```bash
-    python manage.py runserver
-    ```
-
-3. **Run the channel layer worker:**
+2. **Run the channel layer worker:**
 
     Open a new terminal in the project directory and activate the virtual environment. Then, run the Daphne server (or your preferred ASGI server):
 
@@ -89,7 +84,7 @@ Before you begin, ensure you have the following installed:
     daphne myproject.asgi:application
     ```
 
-4. **Run the background tasks processor:**
+3. **Run the background tasks processor:**
 
     Open another new terminal, activate the virtual environment, and start the background task processor:
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airport Dashboard</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Airport Dashboard</h1>
+
+    <h2>Planes</h2>
+    <table id="planes-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Runways</h2>
+    <table id="runways-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Free</th>
+                <th>Current Plane</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Gates</h2>
+    <table id="gates-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Free</th>
+                <th>Current Plane</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Hangars</h2>
+    <table id="hangars-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Free</th>
+                <th>Current Plane</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const updateTable = (tableId, data, fields) => {
+            const tableBody = document.querySelector(`#${tableId} tbody`);
+            tableBody.innerHTML = ""; // Clear existing rows
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                fields.forEach(field => {
+                    const cell = document.createElement("td");
+                    cell.textContent = item[field] || "";
+                    row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+            });
+        };
+
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/dashboard/');
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+
+            updateTable("planes-table", data.planes, ["id", "name", "status", "location"]);
+            updateTable("runways-table", data.runways, ["id", "name", "is_free", "current_plane__name"]);
+            updateTable("gates-table", data.gates, ["id", "name", "is_free", "current_plane__name"]);
+            updateTable("hangars-table", data.hangars, ["id", "name", "is_free", "current_plane__name"]);
+        };
+
+        socket.onopen = function() {
+            console.log("WebSocket connected.");
+        };
+    </script>
+</body>
+</html>

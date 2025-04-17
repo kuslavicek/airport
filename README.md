@@ -59,7 +59,7 @@ Before you begin, ensure you have the following installed:
 4. **Install dependencies:**
 
     ```bash
-    pip install -r requirements.txt
+    pip install django channels channels-redis django-background-task
     ```
     
 

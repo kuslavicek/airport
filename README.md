@@ -61,7 +61,7 @@ Before you begin, ensure you have the following installed:
     ```bash
     pip install -r requirements.txt
     ```
-    *(Note: You might need to create a `requirements.txt` file. A basic one would include `Django`, `channels`, `channels-redis`, and `django-background-tasks`. You can generate it using `pip freeze > requirements.txt` after installing the dependencies)*
+    
 
 5. **Apply migrations:**
 
@@ -99,14 +99,3 @@ http://127.0.0.1:8000/
 
 
 You should see a page displaying tables with real-time information about the planes, runways, gates, and hangars.
-
-## Further Development
-
-Here are some potential areas for further development:
-
-*   **More Realistic Simulation:** Enhance the simulation logic to include factors like flight schedules, delays, and different types of aircraft.
-*   **User Interface Improvements:**  Improve the visual presentation of the dashboard with better styling, charts, or maps.
-*   **Administrative Interface:** Create an admin interface to manage and add new planes, runways, gates, and hangars.
-*   **Error Handling and Logging:** Implement better error handling and logging for the background tasks and WebSocket connections.
-*   **Testing:** Add unit and integration tests to ensure the reliability of the application.
-*   **Authentication:** Implement user authentication and authorization for accessing the dashboard.
